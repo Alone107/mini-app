@@ -272,95 +272,6 @@
             </div>
           </div>
         </section>
-
-        <section class="cart hidden">
-          <div class="container">
-            <div class="cart-row">
-              <div class="cart-title">Корзина</div>
-              <div class="cart-row-button">Продолжить покупки</div>
-            </div>
-
-            <div class="cart-col">
-              <span>1</span>
-              товар
-            </div>
-
-            <div class="cart-wrapper">
-              <div class="cart-item">
-                <div class="cart-item-img">
-                  <img src="images/cards/1.webp" alt="" />
-                </div>
-                <div class="cart-item-center">
-                  <div class="cart-item-price">1000 руб.</div>
-                  <div class="cart-item-name">Турецкий аккаунт</div>
-                  <div class="cart-item-col">
-                    <button class="minus">-</button>
-                    <input type="text" />
-                    <button class="plus">+</button>
-                  </div>
-                </div>
-                <div class="cart-item-close">x</div>
-              </div>
-            </div>
-
-            <div class="cart-bottom">
-              <div class="cart-bottom-col">В корзине 1 товар</div>
-              <div class="cart-bottom-result">
-                Итого:<span>1000</span> рублей
-              </div>
-
-              <button id="orderShow" class="cart-bottom-registration">
-                К оформлению
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="order hidden">
-          <div class="container">
-            <div class="order-row">
-              <div class="order-title">Оформление заказа</div>
-              <div id="orderClose" class="order-close">Назад в корзину</div>
-            </div>
-            <div class="order-form">
-              <form action="">
-                <div class="order-form-text">Оплата</div>
-                <div class="order-form-radio-blocks">
-                  <div class="order-form-radio">
-                    <input
-                      type="radio"
-                      checked
-                      name="order"
-                      id="radioPayTPay"
-                    />
-                    <label for="radioPayTPay">TPay</label>
-                  </div>
-                  <div class="order-form-radio">
-                    <input type="radio" name="order" id="radioPaySberPay" />
-                    <label for="radioPaySberPay">SberPay</label>
-                  </div>
-                  <div class="order-form-radio">
-                    <input type="radio" name="order" id="radioPaySBPOnePay" />
-                    <label for="radioPaySBPOnePay">СБП 1</label>
-                  </div>
-                  <div class="order-form-radio">
-                    <input type="radio" name="order" id="radioPaySBPTwoPay" />
-                    <label for="radioPaySBPTwoPay">СБП 2</label>
-                  </div>
-                </div>
-                <div class="order-form-text order-form-text-email">Почта :</div>
-                <input type="email" class="order-email" placeholder="Email" />
-                <div class="order-sumbit-wrap">
-                  <button class="order-submit" type="submit">
-                    Оформить заказ
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            <div class="order-result">Итого с доставкой: 1000</div>
-          </div>
-        </section>
       </main>
       <footer class="footer">
         <div class="container">
@@ -480,9 +391,9 @@
       </div>
 
       <div id="cartBottomBar" class="cart-bottom-bar">
-        <button id="cartButton" class="cart-button">
+        <a href="cart.html" id="cartButton" class="cart-button">
           Корзина (<span id="cartCount">0</span>)
-        </button>
+        </a>
       </div>
     </div>
   </body>

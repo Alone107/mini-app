@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <main class="main">
+        <section class="order">
+          <div class="container">
+            <div class="order-row">
+              <div class="order-title">Оформление заказа</div>
+              <a href="cart.html" class="order-close">Назад в корзину</a>
+            </div>
+            <div class="order-form">
+              <form action="">
+                <div class="order-form-text">Оплата</div>
+                <div class="order-form-radio-blocks">
+                  <div class="order-form-radio">
+                    <input
+                      type="radio"
+                      checked
+                      name="order"
+                      id="radioPayTPay"
+                    />
+                    <label for="radioPayTPay">TPay</label>
+                  </div>
+                  <div class="order-form-radio">
+                    <input type="radio" name="order" id="radioPaySberPay" />
+                    <label for="radioPaySberPay">SberPay</label>
+                  </div>
+                  <div class="order-form-radio">
+                    <input type="radio" name="order" id="radioPaySBPOnePay" />
+                    <label for="radioPaySBPOnePay">СБП 1</label>
+                  </div>
+                  <div class="order-form-radio">
+                    <input type="radio" name="order" id="radioPaySBPTwoPay" />
+                    <label for="radioPaySBPTwoPay">СБП 2</label>
+                  </div>
+                </div>
+                <div class="order-form-text order-form-text-email">Почта :</div>
+                <input type="email" class="order-email" placeholder="Email" />
+                <div class="order-sumbit-wrap">
+                  <button class="order-submit" type="submit">
+                    Оформить заказ
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="order-result">Итого с доставкой: 1000</div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-wrapper">
+            <div class="footer-links">
+              <div class="footer-links-text">Полезные ссылки</div>
+              <div class="footer-links-block">
+                <a href="#">
+                  <img src="images/star.png" alt="" />
+                  <span>Отзывы</span>
+                </a>
+                <a href="#">
+                  <img src="images/information.png" alt="" />
+                  <span>Информация</span>
+                </a>
+              </div>
+            </div>
+            <div class="footer-socials">
+              <div class="footer-socials-text">Наши соцсети</div>
+              <div class="footer-socials-links">
+                <a href="#">
+                  <img src="images/avito.png" alt="" />
+                </a>
+                <a href="#">
+                  <img src="images/max.svg" alt="" />
+                </a>
+                <a href="#">
+                  <img src="images/tg.svg" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <div class="burger-wrap" id="burgerMenu">
+        <div class="burger-logo">
+          <img src="images/game-hub.webp" alt="" />
+          <span>GAMEHUB SHOP</span>
+        </div>
+        <div class="burger-links">
+          <div class="burger-links-text">Полезные ссылки</div>
+          <div class="burger-links-wrap">
+            <a href="#">
+              <img src="images/star.png" alt="" />
+              <span>Отзывы</span>
+            </a>
+            <a href="#">
+              <img src="images/information.png" alt="" />
+              <span>Информация</span>
+            </a>
+          </div>
+        </div>
+        <div class="burger-socials">
+          <div class="footer-socials-text">Наши соцсети</div>
+          <div class="footer-socials-links">
+            <a href="#">
+              <img src="images/avito.png" alt="" />
+            </a>
+            <a href="#">
+              <img src="images/max.svg" alt="" />
+            </a>
+            <a href="#">
+              <img src="images/tg.svg" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="messenger-vidjet cart-visible">
+        <img src="images/messenger.png" alt="" />
+      </a>
+      <button
+        class="scrollToTop cart-visible"
+        id="scrollToTop"
+        title="Вернуться наверх"
+        aria-label="Вернуться к началу страницы"
+      >
+        ↑
+      </button>
+    </div>
+  </body>
+  <script src="js/swiper-bundle.min.js"></script>
+</html>
