@@ -16,6 +16,8 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 767px;
+  margin: 0 auto;
 }
 
 main {
@@ -75,6 +77,10 @@ section {
 
 .header-burger.active {
   opacity: 0;
+}
+
+.slider {
+  margin-bottom: 20px;
 }
 
 .header-burger span {
