@@ -103,7 +103,214 @@
         </section>
         <section class="catalog-main">
           <div class="container">
-            <div class="catalog-search"></div>
+            <div class="search-sort-container">
+              <!-- Форма поиска -->
+              <div class="search-wrapper">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Поиск товаров..."
+                />
+                <button id="closeSearch" aria-label="Очистить поиск">×</button>
+                <button id="sortSearch" aria-label="Сортировать по">
+                  <img src="images/sort.png" alt="" />
+                </button>
+              </div>
+            </div>
+
+            <div class="row-category-breadcrumbs">
+              <img src="images/arrow-left.png" alt="" />
+              <span class="row-category-breadcrumbs-text">PlayStation</span>
+            </div>
+
+            <div class="tabs-category">
+              <div class="swiper swiper-tabs">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="tab-category" data-tab-category="Турция">
+                      <div class="tab-category-img">
+                        <img src="images/playst.png" alt="Турция" />
+                      </div>
+
+                      <span>Турция</span>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="tab-category" data-tab-category="Индия">
+                      <div class="tab-category-img">
+                        <img src="images/playst.png" alt="Индия" />
+                      </div>
+
+                      <span>Индия</span>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="tab-category" data-tab-category="Польша">
+                      <div class="tab-category-img">
+                        <img src="images/playst.png" alt="Польша" />
+                      </div>
+
+                      <span>Польша</span>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="tab-category" data-tab-category="США">
+                      <div class="tab-category-img">
+                        <img src="images/playst.png" alt="США" />
+                      </div>
+
+                      <span>США</span>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="tab-category" data-tab-category="Италия">
+                      <div class="tab-category-img">
+                        <img src="images/playst.png" alt="Италия" />
+                      </div>
+
+                      <span>Италия</span>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="tab-category" data-tab-category="Германия">
+                      <div class="tab-category-img">
+                        <img src="images/playst.png" alt="Германия" />
+                      </div>
+
+                      <span>Германия</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="productList" class="product-list">
+              <article
+                class="product-item"
+                data-name="Код PSN - 1000 rs (Индия)"
+                data-price="1000"
+                data-country="Индия"
+                data-rating="5"
+                data-date="2026-04-11"
+              >
+                <img src="images/cards/1.webp" alt="" />
+                <div class="product-price">1000 руб.</div>
+                <div class="product-col">В наличии:<span>28</span></div>
+                <div class="product-name">Код PSN - 1000 rs (Индия)</div>
+                <button class="product-btn">В корзину</button>
+              </article>
+              <article
+                class="product-item"
+                data-name="Код PSN - 1500 rs (Индия)"
+                data-price="1500"
+                data-country="Индия"
+                data-rating="4"
+                data-date="2026-04-15"
+              >
+                <img src="images/cards/1.webp" alt="" />
+                <div class="product-price">1500 руб.</div>
+                <div class="product-col">В наличии:<span>5</span></div>
+                <div class="product-name">Код PSN - 1500 rs (Индия)</div>
+                <button class="product-btn">В корзину</button>
+              </article>
+              <article
+                class="product-item"
+                data-name="Код PSN - 3000 rs (Индия)"
+                data-price="3000"
+                data-country="Индия"
+                data-rating="3"
+                data-date="2026-04-21"
+              >
+                <img src="images/cards/1.webp" alt="" />
+                <div class="product-price">3000 руб.</div>
+                <div class="product-col">В наличии:<span>2</span></div>
+                <div class="product-name">Код PSN - 3000 rs (Индия)</div>
+                <button class="product-btn">В корзину</button>
+              </article>
+              <article
+                class="product-item"
+                data-name="Код PSN - 1000 tl (Турция)"
+                data-price="1000"
+                data-country="Турция"
+                data-rating="50"
+                data-date="2026-04-01"
+              >
+                <img src="images/cards/1.webp" alt="" />
+                <div class="product-price">1000 руб.</div>
+                <div class="product-col">В наличии:<span>10</span></div>
+                <div class="product-name">Код PSN - 1000 tl (Турция)</div>
+                <button class="product-btn">В корзину</button>
+              </article>
+              <article
+                class="product-item"
+                data-name="Код PSN - 1500 tl (Турция)"
+                data-price="1500"
+                data-country="Турция"
+                data-rating="60"
+                data-date="2026-05-11"
+              >
+                <img src="images/cards/1.webp" alt="" />
+                <div class="product-price">1500 руб.</div>
+                <div class="product-col">В наличии:<span>12</span></div>
+                <div class="product-name">Код PSN - 1500 tl (Турция)</div>
+                <button class="product-btn">В корзину</button>
+              </article>
+              <article
+                class="product-item"
+                data-name="Код PSN - 3000 tl (Турция)"
+                data-price="3000"
+                data-country="Турция"
+                data-rating="15"
+                data-date="2025-04-11"
+              >
+                <img src="images/cards/1.webp" alt="" />
+                <div class="product-price">3000 руб.</div>
+                <div class="product-col">В наличии:<span>1</span></div>
+                <div class="product-name">Код PSN - 3000 tl (Турция)</div>
+                <button class="product-btn">В корзину</button>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="cart hidden">
+          <div class="container">
+            <div class="cart-row">
+              <div class="cart-title">Корзина</div>
+              <div class="cart-row-button">Продолжить покупки</div>
+            </div>
+
+            <div class="cart-col">
+              <span>1</span>
+              Товар
+            </div>
+
+            <div class="cart-wrapper">
+              <div class="cart-item">
+                <div class="cart-item-img">
+                  <img src="images/cards/1.webp" alt="" />
+                </div>
+                <div class="cart-item-center">
+                  <div class="cart-item-price">1000 руб.</div>
+                  <div class="cart-item-name">Турецкий аккаунт</div>
+                  <div class="cart-item-col">
+                    <button class="minus">-</button>
+                    <input type="text" />
+                    <button class="plus">+</button>
+                  </div>
+                </div>
+                <div class="cart-item-close">x</div>
+              </div>
+            </div>
+
+            <div class="cart-bottom">
+              <div class="cart-bottom-col">В корзине 1 товар</div>
+              <div class="cart-bottom-result">
+                Итого:<span>1000</span> рублей
+              </div>
+
+              <button class="cart-bottom-registration">К оформлению</button>
+            </div>
           </div>
         </section>
       </main>
@@ -185,6 +392,49 @@
       >
         ↑
       </button>
+
+      <!-- Выпадающий список сортировки -->
+      <div class="sort-options" aria-label="Сортировка">
+        <div class="sort-text">Сортирвать по</div>
+        <div class="sort-option">
+          <input
+            type="radio"
+            name="sort"
+            id="sort-rating"
+            value="rating"
+            checked
+          />
+          <label for="sort-rating">По рейтингу</label>
+        </div>
+        <div class="sort-option">
+          <input type="radio" name="sort" id="sort-new" value="new" />
+          <label for="sort-new">Новинки</label>
+        </div>
+        <div class="sort-option">
+          <input
+            type="radio"
+            name="sort"
+            id="sort-price-asc"
+            value="price-asc"
+          />
+          <label for="sort-price-asc">Цена: по возрастанию</label>
+        </div>
+        <div class="sort-option">
+          <input
+            type="radio"
+            name="sort"
+            id="sort-price-desc"
+            value="price-desc"
+          />
+          <label for="sort-price-desc">Цена: по убыванию</label>
+        </div>
+      </div>
+
+      <div id="cartBottomBar" class="cart-bottom-bar">
+        <button id="cartButton" class="cart-button">
+          Корзина (<span id="cartCount">0</span>)
+        </button>
+      </div>
     </div>
   </body>
   <script src="js/swiper-bundle.min.js"></script>
