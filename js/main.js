@@ -128,7 +128,10 @@ function initCart() {
   const mainSection = document.querySelector(".catalog-main");
   const sliderSection = document.querySelector(".slider");
   const cartSection = document.querySelector(".cart");
+  const orderSection = document.querySelector(".order");
   const cartButton = document.getElementById("cartButton");
+  const orderClose = document.getElementById("orderClose");
+  const orderShow = document.getElementById("orderShow");
   const continueShoppingBtn = document.querySelector(".cart-row-button");
 
   function getProductId(product) {
@@ -142,6 +145,7 @@ function initCart() {
     cartCount.textContent = cart.totalCount;
 
     const isCartVisible = cart.totalCount > 0;
+
     document.getElementById("cartBottomBar").style.display = isCartVisible
       ? "block"
       : "none";
@@ -152,6 +156,28 @@ function initCart() {
     });
 
     if (!cartSection.classList.contains("hidden")) renderCartItems();
+    updateBottomBarVisibility();
+  }
+
+  function updateBottomBarVisibility() {
+    const isCartVisible =
+      cartSection && cartSection.classList.contains("visible");
+    const bottomBar = document.getElementById("cartBottomBar");
+
+    if (!bottomBar) {
+      console.warn("Элемент #cartBottomBar не найден в DOM");
+      return;
+    }
+
+    if (isCartVisible || orderSection.classList.contains("visible")) {
+      // Всегда скрываем плашку, когда корзина открыта
+      bottomBar.style.display = "none";
+    } else {
+      // Показываем плашку только когда корзина закрыта
+      // И есть хотя бы один товар в корзине
+      const hasItems = cart.totalCount > 0;
+      bottomBar.style.display = hasItems ? "block" : "none";
+    }
   }
 
   function addToCart(product, quantity = 1) {
@@ -201,6 +227,11 @@ function initCart() {
       mainSection.classList.add("hidden");
     }
 
+    if (orderSection) {
+      orderSection.classList.add("hidden");
+      orderSection.classList.remove("visible");
+    }
+
     // Скрываем sliderSection, если элемент существует
     if (sliderSection) {
       sliderSection.classList.remove("visible");
@@ -214,9 +245,8 @@ function initCart() {
         cartSection.classList.add("visible");
         window.scrollTo({ top: 0, behavior: "smooth" });
         renderCartItems();
+        updateBottomBarVisibility();
       }, 300); // Задержка = длительность анимации скрытия (0.3 с)
-    } else {
-      console.error("Элемент .cart не найден — невозможно открыть корзину");
     }
   }
 
@@ -225,6 +255,11 @@ function initCart() {
     if (cartSection) {
       cartSection.classList.remove("visible");
       cartSection.classList.add("hidden");
+    }
+
+    if (orderSection) {
+      orderSection.classList.add("hidden");
+      orderSection.classList.remove("visible");
     }
 
     // Показываем mainSection и sliderSection после анимации скрытия корзины
@@ -240,6 +275,41 @@ function initCart() {
       }
 
       window.scrollTo({ top: 0, behavior: "smooth" });
+      updateBottomBarVisibility();
+    }, 300); // Задержка = длительность анимации скрытия (0.3 с)
+  }
+
+  function showOrder() {
+    // Скрываем cartSection
+    if (cartSection) {
+      cartSection.classList.remove("visible");
+      cartSection.classList.add("hidden");
+    }
+
+    if (cartSection) {
+      cartSection.classList.remove("visible");
+      cartSection.classList.add("hidden");
+    }
+
+    // Показываем mainSection и sliderSection после анимации скрытия корзины
+    setTimeout(() => {
+      if (mainSection) {
+        mainSection.classList.add("hidden");
+        mainSection.classList.remove("visible");
+      }
+
+      if (sliderSection) {
+        sliderSection.classList.add("hidden");
+        sliderSection.classList.remove("visible");
+      }
+
+      if (orderSection) {
+        orderSection.classList.remove("hidden");
+        orderSection.classList.add("visible");
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      updateBottomBarVisibility();
     }, 300); // Задержка = длительность анимации скрытия (0.3 с)
   }
 
@@ -372,6 +442,14 @@ function initCart() {
   }
   if (continueShoppingBtn) {
     continueShoppingBtn.addEventListener("click", showCatalog);
+  }
+
+  if (orderClose) {
+    orderClose.addEventListener("click", showCart);
+  }
+
+  if (orderShow) {
+    orderShow.addEventListener("click", showOrder);
   }
 
   // Обработчики для элементов корзины

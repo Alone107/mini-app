@@ -282,7 +282,7 @@
 
             <div class="cart-col">
               <span>1</span>
-              Товар
+              товар
             </div>
 
             <div class="cart-wrapper">
@@ -309,8 +309,56 @@
                 Итого:<span>1000</span> рублей
               </div>
 
-              <button class="cart-bottom-registration">К оформлению</button>
+              <button id="orderShow" class="cart-bottom-registration">
+                К оформлению
+              </button>
             </div>
+          </div>
+        </section>
+
+        <section class="order hidden">
+          <div class="container">
+            <div class="order-row">
+              <div class="order-title">Оформление заказа</div>
+              <div id="orderClose" class="order-close">Назад в корзину</div>
+            </div>
+            <div class="order-form">
+              <form action="">
+                <div class="order-form-text">Оплата</div>
+                <div class="order-form-radio-blocks">
+                  <div class="order-form-radio">
+                    <input
+                      type="radio"
+                      checked
+                      name="order"
+                      id="radioPayTPay"
+                    />
+                    <label for="radioPayTPay">TPay</label>
+                  </div>
+                  <div class="order-form-radio">
+                    <input type="radio" name="order" id="radioPaySberPay" />
+                    <label for="radioPaySberPay">SberPay</label>
+                  </div>
+                  <div class="order-form-radio">
+                    <input type="radio" name="order" id="radioPaySBPOnePay" />
+                    <label for="radioPaySBPOnePay">СБП 1</label>
+                  </div>
+                  <div class="order-form-radio">
+                    <input type="radio" name="order" id="radioPaySBPTwoPay" />
+                    <label for="radioPaySBPTwoPay">СБП 2</label>
+                  </div>
+                </div>
+                <div class="order-form-text order-form-text-email">Почта :</div>
+                <input type="email" class="order-email" placeholder="Email" />
+                <div class="order-sumbit-wrap">
+                  <button class="order-submit" type="submit">
+                    Оформить заказ
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="order-result">Итого с доставкой: 1000</div>
           </div>
         </section>
       </main>
@@ -386,6 +434,7 @@
         <img src="images/messenger.png" alt="" />
       </a>
       <button
+        class="scrollToTop"
         id="scrollToTop"
         title="Вернуться наверх"
         aria-label="Вернуться к началу страницы"
