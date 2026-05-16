@@ -119,7 +119,6 @@ function initCart() {
   const cart = {
     items: new Map(),
     totalCount: 0,
-    totalPrice: 0,
   };
 
   const mainSection = document.querySelector(".catalog-main");
@@ -179,6 +178,7 @@ function initCart() {
     }
 
     cart.totalCount += quantity;
+
     updateCartUI();
   }
 
@@ -190,6 +190,7 @@ function initCart() {
 
     cart.totalCount -= item.quantity;
     cart.items.delete(productId);
+
     updateCartUI();
   }
 
@@ -210,24 +211,24 @@ function initCart() {
     const productId = getProductId(product);
     const item = cart.items.get(productId);
 
+    // Ищем актуальные элементы внутри товара
+    const productImage = product.querySelector("img");
+    const cartTarget = document.getElementById("cartButton");
+
     const controls = document.createElement("div");
     controls.className = "quantity-controls";
     controls.innerHTML = `
-      <button class="quantity-btn minus">-</button>
-      <span class="quantity-display">${item.quantity}</span>
-      <button class="quantity-btn plus">+</button>
-    `;
-
-    const loader = document.createElement("div");
-    loader.className = "quantity-loader";
-    loader.innerHTML = `
-  <div class="spinner"></div>
-  <span class="loader-text">Загрузка...</span>
-`;
+    <button class="quantity-btn minus">-</button>
+    <span class="quantity-display">${item.quantity}</span>
+    <button class="quantity-btn plus">+</button>
+  `;
 
     originalButton.replaceWith(controls);
 
-    controls.querySelector(".minus").addEventListener("click", () => {
+    const minusBtn = controls.querySelector(".minus");
+    const plusBtn = controls.querySelector(".plus");
+
+    minusBtn.addEventListener("click", () => {
       if (item.quantity > 1) {
         updateQuantity(productId, item.quantity - 1);
         controls.querySelector(".quantity-display").textContent = item.quantity;
@@ -237,9 +238,14 @@ function initCart() {
       }
     });
 
-    controls.querySelector(".plus").addEventListener("click", () => {
+    plusBtn.addEventListener("click", () => {
       updateQuantity(productId, item.quantity + 1);
       controls.querySelector(".quantity-display").textContent = item.quantity;
+
+      // Запускаем анимацию с актуальными элементами
+      if (productImage && cartTarget) {
+        startFlyingImageAnimation(productImage, cartTarget);
+      }
     });
   }
 
@@ -252,8 +258,23 @@ function initCart() {
 
     button.addEventListener("click", function () {
       const product = this.closest(".product-item");
-      addToCart(product);
-      renderQuantityControls(product, this);
+      const productImage = product.querySelector("img");
+      const cartTarget = document.getElementById("cartButton");
+
+      startFlyingImageAnimation(productImage, cartTarget);
+      toggleLoading(this, true);
+
+      const productId = getProductId(product);
+      if (cart.items.has(productId)) {
+        updateQuantity(productId, cart.items.get(productId).quantity + 1);
+      } else {
+        addToCart(product);
+      }
+
+      setTimeout(() => {
+        toggleLoading(this, false);
+        renderQuantityControls(product, this);
+      }, 800);
     });
   }
 
@@ -288,44 +309,55 @@ function initCart() {
   }
 
   function startFlyingImageAnimation(productImage, cartTarget) {
-    // Создаём клон изображения для анимации
-    const flyingImage = productImage.cloneNode(true);
-    flyingImage.className = "flying-image";
+    if (!productImage || !cartTarget) {
+      console.warn(
+        "Не найдены элементы для анимации: productImage или cartTarget",
+      );
+      return;
+    }
 
-    // Получаем позиции для расчёта анимации
-    const imageRect = productImage.getBoundingClientRect();
-    const cartRect = cartTarget.getBoundingClientRect();
+    try {
+      const flyingImage = productImage.cloneNode(true);
+      flyingImage.className = "flying-image";
 
-    // Рассчитываем смещение относительно корзины
-    const deltaX =
-      cartRect.left + cartRect.width / 2 - imageRect.left - imageRect.width / 2;
-    const deltaY =
-      cartRect.top + cartRect.height / 2 - imageRect.top - imageRect.height / 2;
+      const imageRect = productImage.getBoundingClientRect();
+      const cartRect = cartTarget.getBoundingClientRect();
 
-    // Позиционируем клон в начальной точке
-    flyingImage.style.position = "fixed";
-    flyingImage.style.left = imageRect.left + "px";
-    flyingImage.style.top = imageRect.top + "px";
-    flyingImage.style.width = imageRect.width + "px";
-    flyingImage.style.height = imageRect.height + "px";
-    flyingImage.style.zIndex = "1000";
-    flyingImage.style.transition =
-      "transform 1.5s ease-in-out, opacity 1.5s ease-in-out";
+      const deltaX =
+        cartRect.left +
+        cartRect.width / 2 -
+        imageRect.left -
+        imageRect.width / 2;
+      const deltaY =
+        cartRect.top +
+        cartRect.height / 2 -
+        imageRect.top -
+        imageRect.height / 2;
 
-    document.body.appendChild(flyingImage);
+      flyingImage.style.position = "fixed";
+      flyingImage.style.left = imageRect.left + "px";
+      flyingImage.style.top = imageRect.top + "px";
+      flyingImage.style.width = imageRect.width + "px";
+      flyingImage.style.height = imageRect.height + "px";
+      flyingImage.style.zIndex = "1000";
+      flyingImage.style.transition =
+        "transform 1.5s ease-in-out, opacity 1.5s ease-in-out";
 
-    // Запускаем анимацию с рассчитанными параметрами
-    requestAnimationFrame(() => {
-      flyingImage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.3)`;
-      flyingImage.style.opacity = "0";
-    });
+      document.body.appendChild(flyingImage);
 
-    // Удаляем клон после завершения анимации
-    setTimeout(() => {
-      if (flyingImage && flyingImage.parentNode) {
-        flyingImage.parentNode.removeChild(flyingImage);
-      }
-    }, 1500);
+      requestAnimationFrame(() => {
+        flyingImage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.3)`;
+        flyingImage.style.opacity = "0";
+      });
+
+      setTimeout(() => {
+        if (flyingImage && flyingImage.parentNode) {
+          flyingImage.parentNode.removeChild(flyingImage);
+        }
+      }, 1500);
+    } catch (error) {
+      console.error("Ошибка при запуске анимации:", error);
+    }
   }
 
   // Функция управления анимацией загрузки

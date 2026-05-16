@@ -251,8 +251,20 @@ section {
   padding: 5px;
   z-index: 1000;
   transition: all 0.3s;
+  animation: widthVidjet 5s infinite forwards linear;
 }
 
+@keyframes widthVidjet {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .messenger-vidjet img {
   max-width: 20px;
 }
