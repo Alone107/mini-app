@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Инициализация поиска и сортировки
   initSearchAndSorting();
 
-  // Инициализация табов
-  initTabs();
-
   // Инициализация навигации по категориям
   initCategoryNavigation();
 });
@@ -452,7 +449,7 @@ function initSearchAndSorting() {
 
   sortSearch.addEventListener("click", (e) => {
     e.stopPropagation();
-    sortSearchMenu.classList.add("active");
+    sortSearchMenu.classList.toggle("active");
   });
 
   document.addEventListener("click", (e) => {
@@ -466,32 +463,6 @@ function initSearchAndSorting() {
   });
 
   applySorting();
-}
-
-// --- ИНИЦИАЛИЗАЦИЯ ТАБОВ ---
-function initTabs() {
-  const tabCategories = document.querySelectorAll(".tab-category");
-  const products = document.querySelectorAll(".product-item");
-
-  function filterProductsByCountry(country) {
-    products.forEach((product) => {
-      const productCountry = product.dataset.country;
-      product.style.display =
-        country === "Все" || country === productCountry ? "flex" : "none";
-    });
-  }
-
-  tabCategories.forEach((tab) =>
-    tab.addEventListener("click", function () {
-      tabCategories.forEach((t) => t.classList.remove("active"));
-      this.classList.add("active");
-      const country = this.dataset.tabCategory;
-      filterProductsByCountry(country);
-    }),
-  );
-
-  // Инициализация: показываем все товары при загрузке
-  filterProductsByCountry("Все");
 }
 
 // --- ИНИЦИАЛИЗАЦИЯ НАВИГАЦИИ ПО КАТЕГОРИЯМ ---
