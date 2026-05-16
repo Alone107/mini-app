@@ -179,7 +179,6 @@ function initCart() {
     }
 
     cart.totalCount += quantity;
-    cart.totalPrice += price * quantity;
     updateCartUI();
   }
 
@@ -190,7 +189,6 @@ function initCart() {
     const price = Number(item.product.dataset.price);
 
     cart.totalCount -= item.quantity;
-    cart.totalPrice -= price * item.quantity;
     cart.items.delete(productId);
     updateCartUI();
   }
@@ -206,16 +204,6 @@ function initCart() {
     cart.totalPrice += price * quantityDiff;
     item.quantity = newQuantity;
     updateCartUI();
-  }
-
-  function getProductWordForm(count) {
-    const lastDigit = count % 10;
-    const lastTwoDigits = count % 100;
-
-    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return "товаров";
-    if (lastDigit === 1) return "товар";
-    if (lastDigit >= 2 && lastDigit <= 4) return "товара";
-    return "товаров";
   }
 
   function renderQuantityControls(product, originalButton) {

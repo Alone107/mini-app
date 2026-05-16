@@ -703,7 +703,7 @@ section {
 }
 
 .product-btn.loading {
-  animation: widthQuanity 0.5s forwards linear;
+  animation: widthQuanity 0.7s forwards linear;
 }
 
 @keyframes widthQuanity {
@@ -889,10 +889,10 @@ section {
 }
 
 .order-close {
-  padding: 10px 10px;
+  padding: 10px 15px;
   border-radius: 8px;
   background: #181818;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .order-title {
