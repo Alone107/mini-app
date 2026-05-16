@@ -274,35 +274,10 @@ function initCart() {
       button.addEventListener("click", function () {
         const product = this.closest(".product-item");
         const productImage = product.querySelector("img");
-        const cartTarget = document.getElementById("cartButton"); // Целимся в кнопку корзины
+        const cartTarget = document.getElementById("cartButton");
 
-        // Создаём клон изображения для анимации
-        const flyingImage = productImage.cloneNode(true);
-        flyingImage.className = "flying-image";
-
-        // Получаем позиции для расчёта анимации
-        const imageRect = productImage.getBoundingClientRect();
-        const cartRect = cartTarget.getBoundingClientRect();
-
-        // Рассчитываем смещение относительно корзины
-        const deltaX =
-          cartRect.left +
-          cartRect.width / 2 -
-          imageRect.left -
-          imageRect.width / 2;
-        const deltaY =
-          cartRect.top +
-          cartRect.height / 2 -
-          imageRect.top -
-          imageRect.height / 2;
-
-        // Позиционируем клон в начальной точке
-        flyingImage.style.left = imageRect.left + "px";
-        flyingImage.style.top = imageRect.top + "px";
-        flyingImage.style.width = imageRect.width + "px";
-        flyingImage.style.height = imageRect.height + "px";
-
-        document.body.appendChild(flyingImage);
+        // Запускаем анимацию
+        startFlyingImageAnimation(productImage, cartTarget);
 
         // Включаем анимацию загрузки в кнопке
         toggleLoading(this, true);
@@ -315,30 +290,55 @@ function initCart() {
           addToCart(product);
         }
 
-        // Запускаем анимацию с рассчитанными параметрами
-        requestAnimationFrame(() => {
-          flyingImage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.3)`;
-          flyingImage.style.opacity = "0";
-        });
-
-        // Отключаем анимацию и показываем элементы управления через 800 мс
+        // Отключаем анимацию и показываем элементы управления
         setTimeout(() => {
           toggleLoading(this, false);
           renderQuantityControls(product, this);
-
-          // Обновляем счётчик товаров в корзине
-          updateCartCount();
-
-          // Удаляем клон после завершения анимации
-          if (flyingImage && flyingImage.parentNode) {
-            flyingImage.parentNode.removeChild(flyingImage);
-          }
-        }, 1500);
+        }, 800);
       });
     });
   }
 
-  // Функция обновления счётчика товаров в корзине
+  function startFlyingImageAnimation(productImage, cartTarget) {
+    // Создаём клон изображения для анимации
+    const flyingImage = productImage.cloneNode(true);
+    flyingImage.className = "flying-image";
+
+    // Получаем позиции для расчёта анимации
+    const imageRect = productImage.getBoundingClientRect();
+    const cartRect = cartTarget.getBoundingClientRect();
+
+    // Рассчитываем смещение относительно корзины
+    const deltaX =
+      cartRect.left + cartRect.width / 2 - imageRect.left - imageRect.width / 2;
+    const deltaY =
+      cartRect.top + cartRect.height / 2 - imageRect.top - imageRect.height / 2;
+
+    // Позиционируем клон в начальной точке
+    flyingImage.style.position = "fixed";
+    flyingImage.style.left = imageRect.left + "px";
+    flyingImage.style.top = imageRect.top + "px";
+    flyingImage.style.width = imageRect.width + "px";
+    flyingImage.style.height = imageRect.height + "px";
+    flyingImage.style.zIndex = "1000";
+    flyingImage.style.transition =
+      "transform 1.5s ease-in-out, opacity 1.5s ease-in-out";
+
+    document.body.appendChild(flyingImage);
+
+    // Запускаем анимацию с рассчитанными параметрами
+    requestAnimationFrame(() => {
+      flyingImage.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(0.3)`;
+      flyingImage.style.opacity = "0";
+    });
+
+    // Удаляем клон после завершения анимации
+    setTimeout(() => {
+      if (flyingImage && flyingImage.parentNode) {
+        flyingImage.parentNode.removeChild(flyingImage);
+      }
+    }, 1500);
+  }
 
   // Функция управления анимацией загрузки
   function toggleLoading(button, isLoading) {
