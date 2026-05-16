@@ -426,7 +426,7 @@ section {
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: #999;
+  color: #fafafa;
   width: 24px;
   height: 24px;
   display: flex;
@@ -434,6 +434,7 @@ section {
   justify-content: center;
   opacity: 0;
   transition: all 0.7s;
+  line-height: 103%;
 }
 
 #closeSearch.active {
